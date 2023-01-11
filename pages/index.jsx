@@ -5,19 +5,20 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [query, setQuery] = useState('steve');
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    const fetchHackerNews = async (search) => {
+    const fetchYTVideos = async (search) => {
       const res = await fetch(`api/yt-search/${search}`);
       const data = await res.json();
-      const articles = data.hits;
 
-      if (articles) {
-        console.log(articles[0]);
+      if (data) {
+        console.log(data[0]);
+        setVideos(data);
       }
     };
 
-    fetchHackerNews(query)
+    fetchYTVideos(query)
   }, [query])
 
   const handleSubmit = e => {
@@ -29,6 +30,8 @@ export default function Home() {
       e.target['youtube-search'].value = "";
     }
   };
+
+  const renderVideos = videos && videos.length > 0;
 
   return (
     <>
@@ -75,6 +78,17 @@ export default function Home() {
               <input type="text" name="youtube-search" id="youtube-search" />
             </form>
           </div>
+          {renderVideos && (
+            <ul>
+              {videos.map(video => (
+                <li key={video.id}>
+                  <a href={`https://www.youtube.com/watch?v=${video.id}`}>
+                    {video.snippet.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </main>
     </>
