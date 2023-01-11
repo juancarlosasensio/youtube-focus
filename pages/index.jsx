@@ -1,8 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [query, setQuery] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const search = e.target['youtube-search'].value;
+    if (search) {
+      setQuery(search);
+      e.target['youtube-search'].value = "";
+    }
+  };
+
   return (
     <>
       <Head>
@@ -39,6 +52,14 @@ export default function Home() {
         <div className={styles.center}>
           <div>
             <h1>YoutubeFocus</h1>
+            <form
+              onSubmit={handleSubmit}
+              autoFocus
+              autoComplete="off"
+            >
+              <label htmlFor="youtube-search">Search</label>
+              <input type="text" name="youtube-search" id="youtube-search" />
+            </form>
           </div>
         </div>
       </main>
