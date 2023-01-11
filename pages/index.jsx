@@ -6,8 +6,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const fetchOptions = useRef({});
 
-  // This seems to be causing an infinite loop...why??
-  const { status, data, error } = useYTSearch(query, fetchOptions);
+  const { status, data, error } = useYTSearch(query, fetchOptions.current);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -55,7 +54,7 @@ export default function Home() {
                   <a target="_blank" href={`https://www.youtube.com/watch?v=${video.id.videoId}`} rel="noopener noreferrer">
                     {video.snippet.title}
                   </a>{" "}
-                  by {video.snippet.author}
+                  by {video.channelTitle}
                 </div>
               ))}
             </>

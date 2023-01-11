@@ -1,4 +1,3 @@
-// https://codesandbox.io/s/thirsty-hellman-ovkwqr?file=/src/hooks.js
 import { useEffect, useRef, useReducer } from "react";
 
 export const useFetch = (url, options = {}) => {
