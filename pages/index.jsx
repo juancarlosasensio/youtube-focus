@@ -80,3 +80,44 @@ export default function Home() {
     </>
   )
 }
+
+// Response from api/yt-search/[query] is an array of items...
+// Each YouTube video item JSON looks like:
+
+/* 
+   {
+    "kind": "youtube#searchResult",
+    "etag": "Ob3Mbk-21J5VzmsfxUbDfzCR2OE",
+    "id": {
+      "kind": "youtube#video",
+      "videoId": "9iqwYOgnzxE"
+    },
+    "snippet": {
+      "publishedAt": "2020-08-21T04:00:01Z",
+      "channelId": "UCFkoPRmuxqr37jvGmmpzhzQ",
+      "title": "Maluma - Madrid (Audio) ft. Myke Towers",
+      "description": "Maluma feat. Myke Towers – Madrid (Cover Audio) Top Hits: https://smarturl.it/malumatophits My Channel: ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "MalumaVEVO",
+      "liveBroadcastContent": "none",
+      "publishTime": "2020-08-21T04:00:01Z"
+    }
+  },
+*/
+
