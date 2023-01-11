@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchHackerNews = async (search) => {
-      const res = await fetch(`https://hn.algolia.com/api/v1/search?query=${search}`);
+      const res = await fetch(`api/yt-search/${search}`);
       const data = await res.json();
       const articles = data.hits;
 
