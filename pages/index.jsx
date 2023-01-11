@@ -1,10 +1,24 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    const fetchHackerNews = async (search) => {
+      const res = await fetch(`https://hn.algolia.com/api/v1/search?query=${search}`);
+      const data = await res.json();
+      const articles = data.hits;
+
+      if (articles) {
+        console.log(articles[0]);
+      }
+    };
+
+    fetchHackerNews(query)
+  }, [query])
 
   const handleSubmit = e => {
     e.preventDefault();
