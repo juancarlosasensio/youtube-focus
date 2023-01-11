@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('steve');
 
   useEffect(() => {
     const fetchHackerNews = async (search) => {
