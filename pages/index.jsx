@@ -47,12 +47,16 @@ export default function Home() {
             <>
               <div className="query"> {query ? `Search results for ${query}` : 'Front page results'} </div>
               {data.length === 0 && <div> No videos found! </div>}
-              {data.map(video => (
-                <div className="video" key={video.id.videoId}>
-                  <a target="_blank" href={`/videos/${video.id.videoId}?videoTitle=${encodeURIComponent(video.snippet.title)}`} rel="noopener noreferrer">
-                    {video.snippet.title}
-                  </a>{" "}
-                  by {video.channelTitle}
+              
+              {data.map(({ id, snippet }) => (
+                <div className="video" key={id.videoId}>
+                  <a 
+                    target="_blank" 
+                    href={`/videos/${id.videoId}?videoTitle=${encodeURIComponent(snippet.title)}`} 
+                    rel="noopener noreferrer">
+                    {snippet.title}
+                  </a>
+                  by {snippet.channelTitle}
                 </div>
               ))}
             </>
