@@ -49,7 +49,7 @@ export default function Home() {
               {data.length === 0 && <div> No videos found! </div>}
               {data.map(video => (
                 <div className="video" key={video.id.videoId}>
-                  <a target="_blank" href={`https://www.youtube.com/watch?v=${video.id.videoId}`} rel="noopener noreferrer">
+                  <a target="_blank" href={`/videos/${video.id.videoId}?videoTitle=${encodeURIComponent(video.snippet.title)}`} rel="noopener noreferrer">
                     {video.snippet.title}
                   </a>{" "}
                   by {video.channelTitle}
