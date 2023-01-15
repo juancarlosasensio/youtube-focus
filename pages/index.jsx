@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useYTSearch } from '../hooks/useYTSearch';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
   const [query, setQuery] = useState("");
