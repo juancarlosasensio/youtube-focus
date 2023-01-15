@@ -4,9 +4,7 @@ import { useRef, useState } from 'react';
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const fetchOptions = useRef({});
-
-  const { status, data, error } = useYTSearch(query, fetchOptions.current);
+  const { status, data, error } = useYTSearch(query);
 
   const handleSubmit = e => {
     e.preventDefault();
