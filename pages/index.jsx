@@ -39,7 +39,7 @@ export default function Home() {
         </form>
         <main>
           {status === "idle" && (
-            <div> Let&aposs get started by searching for an article! </div>
+            <div> Get started by searching for an article! </div>
           )}
           {status === "error" && <div>{error}</div>}
           {status === "fetching" && <div className="loading" />}

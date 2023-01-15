@@ -6,6 +6,8 @@ export default async function handler(req, res) {
 
   const YT_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${query}&type=video&videoEmbeddable=true&key=${process.env.YOUTUBE_KEY}`
 
+  if (!query) res.status(204)
+
   try { 
     const response = await fetch(YT_URL);
     const data = await response.json();

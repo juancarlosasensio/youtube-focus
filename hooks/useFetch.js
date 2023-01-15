@@ -26,6 +26,12 @@ export const useFetch = (url, options = {}) => {
     let cancelRequest = false;
     if (!url) return;
 
+    const queryValue = url.split("/").pop();
+
+    console.log(queryValue);
+
+    if (!queryValue) return;
+
     const fetchData = async () => {
       dispatch({ type: "FETCHING" });
 
