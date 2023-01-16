@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const { query } = req.query
   console.log("You've hit /api/yt-search/[query] with: ", query)
 
-  const YT_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${query}&type=video&videoEmbeddable=true&key=${process.env.YOUTUBE_KEY}`
+  const YT_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=${query}&type=video&eventType=completed&videoEmbeddable=true&key=${process.env.YOUTUBE_KEY}`
 
   if (!query) res.status(204)
 
