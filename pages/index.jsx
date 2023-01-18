@@ -4,21 +4,15 @@ import { useYTSearch } from '../hooks/useYTSearch';
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const { status, data, error } = useYTSearch(query);
-    // Prepare a constant `ip` with empty data by default
-  const [ip, setIp] = useState()
-  console.log('logging ip: ', ip)
+  const [countryCode, setCountryCode] = useState("")
+  const { status, data, error } = useYTSearch(query, countryCode);
 
-  // Run `getIP` function above just once when the page is rendered
   useEffect(() => {
     const getIp = async () => {
       const res = await fetch('https://geolocation-db.com/json/')
-      console.log('logging res: ', res)
       const data = await res.json();
-      console.log('logging data: ', data)
-      setIp(data.IPv4);
+      setCountryCode(data.country_code);
     }
-
     getIp()
   }, [])
 
