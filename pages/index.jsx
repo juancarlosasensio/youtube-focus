@@ -8,10 +8,15 @@ export default function Home() {
   const { status, data, error } = useYTSearch(query, countryCode);
 
   useEffect(() => {
+    // Why does the UI crash if call to getIp() throws an error?
     const getIp = async () => {
-      const res = await fetch('https://geolocation-db.com/json/')
-      const data = await res.json();
-      setCountryCode(data.country_code);
+      try {
+        const res = await fetch('https://geolocation-db.com/json/')
+        const ipData = await res.json();
+        setCountryCode(ipData.country_code);
+      } catch (error) {
+        console.log(error);
+      }
     }
     getIp()
   }, [])
