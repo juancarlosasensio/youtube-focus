@@ -6,10 +6,10 @@ export const useYTSearch = (query, countryCode, options = {}) => {
   const fetchOptions = useRef(options);
   let endpoint;
 
-  if (!query) {
-    endpoint = `/api/yt-search/`;
-  } else {
+  if (query && countryCode) {
     endpoint = `/api/yt-search/${query}/${countryCode}`;
+  } else if (query) {
+    endpoint = `/api/yt-search/${query}`;
   }
 
   return useFetch(endpoint, fetchOptions);

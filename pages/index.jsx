@@ -69,9 +69,9 @@ export default function Home() {
                     target="_blank" 
                     href={`/videos/${id.videoId}?videoTitle=${encodeURIComponent(snippet.title)}`} 
                     rel="noopener noreferrer">
-                    {snippet.title}
+                    {decodeURIComponent(snippet.title)}
                   </a>
-                  by {snippet.channelTitle}
+                  by {decodeURIComponent(snippet.channelTitle)}
                 </div>
               ))}
             </>
