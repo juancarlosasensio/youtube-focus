@@ -1,7 +1,7 @@
+import { YT_BASE_URL } from "../../../../../global-constants";
+
 export default async function handler(req, res) {
   const { query, country } = req.query
-
-  const BASE = `https://youtube.googleapis.com/youtube/v3/search?`
   let dynamicParams;
 
   console.log("You've hit /api/yt-search/[query]/[country] with: ", query, country)
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   const params = `part=snippet&maxResults=10&order=relevance&type=video&${dynamicParams}&eventType=completed&videoEmbeddable=true&safeSearch=strict&videoSyndicated=true&key=${process.env.YOUTUBE_KEY}`;
 
   try { 
-    const response = await fetch(`${BASE}${params}`);
+    const response = await fetch(`${YT_BASE_URL}${params}`);
     const data = await response.json();
 
     res.status(200).json(data.items);
