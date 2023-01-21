@@ -12,5 +12,7 @@ export const useYTSearch = (query, countryCode, options = {}) => {
     endpoint = `/api/yt-search/${query}`;
   }
 
+
+  // useFetch will handle empty endpoint
   return useFetch(endpoint, fetchOptions);
 }
