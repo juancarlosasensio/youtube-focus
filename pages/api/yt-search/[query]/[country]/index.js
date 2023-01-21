@@ -1,22 +1,28 @@
-import { YT_BASE_URL } from "../../../../../global-constants";
+import { YT_BASE_URL, DEFAULT_PARAMS } from "../../../../../global-constants";
 
 export default async function handler(req, res) {
   const { query, country } = req.query
-  let dynamicParams;
+  let dynamicParams = {};
 
   console.log("You've hit /api/yt-search/[query]/[country] with: ", query, country)
   if (!query) res.status(204)
 
   if (!country) {
-    dynamicParams = `q=${query}`;
+    dynamicParams = {
+      'q': `${query}`
+    }  
   } else {
-    dynamicParams = `q=${query}&regionCode=${country}`;
+    dynamicParams = {
+      'q': `${query}`,
+      'regionCode': `${country}`
+    }
   }
 
-  const params = `part=snippet&maxResults=10&order=relevance&type=video&${dynamicParams}&eventType=completed&videoEmbeddable=true&safeSearch=strict&videoSyndicated=true&key=${process.env.YOUTUBE_KEY}`;
+  const paramsObj = { ...DEFAULT_PARAMS, ...dynamicParams };
+  const params = Object.keys(paramsObj).map((key) => `${key}=${paramsObj[key]}`);
 
   try { 
-    const response = await fetch(`${YT_BASE_URL}${params}`);
+    const response = await fetch(`${YT_BASE_URL}${params.join('&')}`);
     const data = await response.json();
 
     res.status(200).json(data.items);
