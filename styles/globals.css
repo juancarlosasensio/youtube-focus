@@ -26,6 +26,11 @@ a {
 	color: #222;
 }
 
+.yt-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
 .Form {
 	display: flex;
 }
