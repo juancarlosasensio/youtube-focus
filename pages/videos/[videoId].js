@@ -15,7 +15,10 @@ export async function getServerSideProps(context) {
   }
 }
 
-const YoutubeVideo = dynamic(() => import('../../components/YoutubeVideo.jsx'))
+const YoutubeVideo = dynamic(
+  () => import('../../components/YoutubeVideo.jsx'),
+  { loading: () => <p>Loading...</p> }
+)
 
 const SingleVideoEmbedPage = () => {
   return (
