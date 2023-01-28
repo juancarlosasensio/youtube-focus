@@ -35,7 +35,7 @@ const Video = () => {
         <iframe
           className='yt-video'
           style={{ border: '0px' }}  
-          src={`https://www.youtube.com/embed/${decodeURIComponent(videoId)}?feature=oembed`}
+          src={`https://www.youtube.com/embed/${decodeURIComponent(videoId)}?feature=oembed&playsinline=1`}
           title={decodeURIComponent(videoTitle)}  
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowFullScreen
