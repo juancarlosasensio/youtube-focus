@@ -22,7 +22,9 @@ const YoutubeVideo = dynamic(
 
 const SingleVideoEmbedPage = () => {
   return (
-    <YoutubeVideo />
+    <div className="App">
+      <YoutubeVideo />
+    </div>
   )
 }
 
