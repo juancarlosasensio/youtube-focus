@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic';
 
 export async function getServerSideProps(context) {
   const { videoId } = context.query;
@@ -15,23 +15,12 @@ export async function getServerSideProps(context) {
   }
 }
 
-const Video = () => {
-  const router = useRouter()
-  const { videoId, videoTitle } = router.query
+const YoutubeVideo = dynamic(() => import('../../components/YoutubeVideo.jsx'))
 
+const SingleVideoEmbedPage = () => {
   return (
-    <div>
-      <iframe
-        className='yt-video'
-        style={{ border: '0px' }}  
-        src={`https://www.youtube.com/embed/${decodeURIComponent(videoId)}`}
-        title={decodeURIComponent(videoTitle)}  
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        allowFullScreen
-        > 
-        </iframe>
-    </div>
+    <YoutubeVideo />
   )
 }
 
-export default Video
+export default SingleVideoEmbedPage;
