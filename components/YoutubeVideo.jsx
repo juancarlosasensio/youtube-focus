@@ -17,7 +17,19 @@ const Video = () => {
       },
   });
 
-    return <YouTube videoId={videoId} opts={opts} />;
+    return (
+      <div>
+        <YouTube videoId={videoId} opts={opts} />
+         <iframe
+            width={560}
+            height={315}
+            src='https://www.youtube.com/embed/_zQqN5OYCCM'
+            title='YouTube video player'
+            frameBorder={0}
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          />
+      </div>
+    );
   }
 
 //   return (
