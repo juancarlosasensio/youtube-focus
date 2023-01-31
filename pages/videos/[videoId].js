@@ -20,7 +20,7 @@ const SingleVideoEmbedPage = () => {
   const router = useRouter();
   const { videoId, videoTitle } = router.query;
   return (
-    <div>
+    <div style={{ width: '90%', height: 'auto' }}>
       <LiteYouTubeEmbed
         id={videoId} // Default none, id of the video or playlist
         adNetwork={true} // Default true, to preconnect or not to doubleclick addresses called by YouTube iframe (the adnetwork from Google)
