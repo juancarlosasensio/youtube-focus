@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     }  
   } else {
     dynamicParams = {
-      'q': `${query}`,
+      'q': `${encodeURIComponent(query)}`,
       'regionCode': `${country}`
     }
   }
