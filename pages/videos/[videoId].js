@@ -24,11 +24,6 @@ const SingleVideoEmbedPage = () => {
   /* 
     The key to all this. Thanks Paul Irish: 
     https://github.com/paulirish/lite-youtube-embed
-
-    https://medium.com/geekculture/react-uncaught-typeerror-destroy-is-not-a-function-192738a6e79b
-    https://www.swyx.io/how-to-use-web-components-with-next-js-and-typescript-4gg1
-    https://css-tricks.com/using-web-components-with-next-or-any-ssr-framework/
-    https://www.newline.co/@kchan/web-components-in-server-side-rendered-ssr-and-static-site-generated-ssg-in-nextjs-applications--6b2e93b2
   */
    useEffect(() => {
       const importModule = async () => {
