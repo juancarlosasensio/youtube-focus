@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## YoutubeFocus
+YouTube, with less distractions. 
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). [YouTube's Data V3 API](https://developers.google.com/youtube/v3/docs/search/list) provides search results.
 
 ## Getting Started
 

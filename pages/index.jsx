@@ -1,10 +1,25 @@
-import Head from 'next/head'
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { useYTSearch } from '../hooks/useYTSearch';
-import { useState } from 'react';
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const { status, data, error } = useYTSearch(query);
+  const [countryCode, setCountryCode] = useState("")
+  const { status, data, error } = useYTSearch(query, countryCode);
+
+  useEffect(() => {
+    // Why does the UI crash if call to getIp() throws an error?
+    const getIp = async () => {
+      try {
+        const res = await fetch('https://geolocation-db.com/json/')
+        const ipData = await res.json();
+        setCountryCode(ipData.country_code);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getIp()
+  }, [])
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -54,9 +69,9 @@ export default function Home() {
                     target="_blank" 
                     href={`/videos/${id.videoId}?videoTitle=${encodeURIComponent(snippet.title)}`} 
                     rel="noopener noreferrer">
-                    {snippet.title}
+                    {decodeURIComponent(snippet.title)}
                   </a>
-                  by {snippet.channelTitle}
+                  by {decodeURIComponent(snippet.channelTitle)}
                 </div>
               ))}
             </>
@@ -66,43 +81,3 @@ export default function Home() {
     </>
   );
 }
-
-// Response from api/yt-search/[query] is an array of items...
-// Each YouTube video item JSON looks like:
-
-/* 
-   {
-    "kind": "youtube#searchResult",
-    "etag": "Ob3Mbk-21J5VzmsfxUbDfzCR2OE",
-    "id": {
-      "kind": "youtube#video",
-      "videoId": "9iqwYOgnzxE"
-    },
-    "snippet": {
-      "publishedAt": "2020-08-21T04:00:01Z",
-      "channelId": "UCFkoPRmuxqr37jvGmmpzhzQ",
-      "title": "Maluma - Madrid (Audio) ft. Myke Towers",
-      "description": "Maluma feat. Myke Towers – Madrid (Cover Audio) Top Hits: https://smarturl.it/malumatophits My Channel: ...",
-      "thumbnails": {
-        "default": {
-          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/default.jpg",
-          "width": 120,
-          "height": 90
-        },
-        "medium": {
-          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/mqdefault.jpg",
-          "width": 320,
-          "height": 180
-        },
-        "high": {
-          "url": "https://i.ytimg.com/vi/9iqwYOgnzxE/hqdefault.jpg",
-          "width": 480,
-          "height": 360
-        }
-      },
-      "channelTitle": "MalumaVEVO",
-      "liveBroadcastContent": "none",
-      "publishTime": "2020-08-21T04:00:01Z"
-    }
-  },
-*/
